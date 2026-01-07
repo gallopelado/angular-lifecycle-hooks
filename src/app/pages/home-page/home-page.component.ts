@@ -16,6 +16,12 @@ export class HomePageComponent {
 
   constructor() {
     log('constructor llamado');
+
+    setTimeout(() => {
+      this.traditionalProperty = 'Celina Ramírez';
+      this.signalProperty.set('Celina Ramírez');
+      console.log('hecho');
+    }, 2000);
   }
 
   changeTradicional() {
