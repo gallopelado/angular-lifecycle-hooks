@@ -1,4 +1,5 @@
 import { afterNextRender, afterRender, Component, effect, signal } from '@angular/core';
+import { TitleComponent } from '../../components/navbar/title/title.component';
 
 const log = (...messages: string[]) => {
   console.log(`${ messages[0] } %c${ messages.slice(1).join(', ') }`, 'color: #bada55');
@@ -6,7 +7,7 @@ const log = (...messages: string[]) => {
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [TitleComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
@@ -17,11 +18,11 @@ export class HomePageComponent {
   constructor() {
     log('constructor llamado');
 
-    setTimeout(() => {
-      this.traditionalProperty = 'Celina Ramírez';
-      this.signalProperty.set('Celina Ramírez');
-      console.log('hecho');
-    }, 2000);
+    // setTimeout(() => {
+    //   this.traditionalProperty = 'Celina Ramírez';
+    //   this.signalProperty.set('Celina Ramírez');
+    //   console.log('hecho');
+    // }, 2000);
   }
 
   changeTradicional() {
