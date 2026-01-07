@@ -43,4 +43,8 @@ export class HomePageComponent {
     log('ngAfterViewChecked: Se ejecuta cada vez que se ha comprobado si hay cambios en la vista del componente');
   }
 
+  ngOnDestroy() {
+    log('ngOnDestroy[HomePageComponent]', 'Se ejecuta una vez antes de que se destruya el componente');
+  }
+
 }
