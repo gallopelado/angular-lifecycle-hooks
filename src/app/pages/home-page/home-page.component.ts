@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { afterNextRender, afterRender, Component, effect } from '@angular/core';
 
 const log = (...messages: string[]) => {
   console.log(`${ messages[0] } %c${ messages.slice(1).join(', ') }`, 'color: #bada55');
@@ -14,6 +14,14 @@ export class HomePageComponent {
   constructor() {
     log('constructor llamado');
   }
+
+  basicEffect = effect(( onCleanUp ) => {
+    log('effect[HomePageComponent]','disparar efectos secundarios');
+
+    onCleanUp(() => {
+      log('effect[HomePageComponent](onCleanUp)','se ejecuta cuando el efecto se va a destruir');
+    })
+  });
 
   ngOnInit() {
     log('ngOnInit: Se ejecuta una vez después de que angular haya inicializado todas las entradas del componente');
@@ -46,5 +54,13 @@ export class HomePageComponent {
   ngOnDestroy() {
     log('ngOnDestroy[HomePageComponent]', 'Se ejecuta una vez antes de que se destruya el componente');
   }
+
+  afterNextRenderEffect = afterNextRender(() => {
+    log('afterNextRenderEffect[HomePageComponent]', 'Se ejecuta una vez la próxima vez que todos los componentes se hayan renderizado en el DOM');
+  });
+
+  afterRender = afterRender(() => {
+    log('afterRender[HomePageComponent]', 'Se ejecuta cada vez que todos los componentes se hayan renderizado en el DOM');
+  });
 
 }
